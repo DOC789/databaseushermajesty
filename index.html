@@ -1,0 +1,1753 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Pendataan Usher — GBI PPL Majesty</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome untuk Ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        navy: {
+                            800: '#1e293b',
+                            900: '#0f172a',
+                            950: '#090d16',
+                        },
+                        gold: {
+                            400: '#fbbf24',
+                            500: '#f59e0b',
+                            600: '#d97706',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Kustomisasi scrollbar & transisi halus */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        .fade-in {
+            animation: fadeIn 0.35s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-amber-200 selection:text-slate-900 min-h-screen flex flex-col">
+
+    <!-- Top Navigation / Mode Switcher -->
+    <nav class="bg-slate-900 text-white sticky top-0 z-40 shadow-md border-b border-slate-800">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center text-slate-950 font-bold shadow-sm">
+                    <i class="fa-solid fa-church text-base"></i>
+                </div>
+                <div>
+                    <span class="font-display font-bold text-sm sm:text-base tracking-tight block leading-none">GBI PPL Majesty</span>
+                    <span class="text-[11px] text-amber-400 font-medium tracking-wider uppercase">Divisi Usher & Hospitality</span>
+                </div>
+            </div>
+
+            <!-- Tab Switcher -->
+            <div class="flex bg-slate-800/90 p-1 rounded-xl border border-slate-700/70">
+                <button type="button" id="btn-tab-form" onclick="switchTab('form')" class="px-3 sm:px-4 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all bg-amber-500 text-slate-950 shadow-sm flex items-center gap-1.5 cursor-pointer">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                    <span>Isi Form</span>
+                </button>
+                <button type="button" id="btn-tab-admin" onclick="switchTab('admin')" class="px-3 sm:px-4 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all text-slate-300 hover:text-white flex items-center gap-1.5 cursor-pointer">
+                    <i class="fa-solid fa-lock text-amber-400 text-xs" id="admin-lock-icon"></i>
+                    <span class="hidden sm:inline">Admin</span>
+                    <span class="sm:hidden">Admin</span>
+                    <span id="badge-count" class="ml-0.5 bg-slate-700 text-amber-400 text-[11px] px-1.5 py-0.5 rounded-full font-bold">0</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <main class="flex-grow max-w-4xl w-full mx-auto px-4 sm:px-6 py-6 sm:py-10">
+
+        <!-- ========================================== -->
+        <!-- VIEW 1: FORM PENDATAAN USHER -->
+        <!-- ========================================== -->
+        <div id="view-form" class="fade-in">
+            <!-- Hero Header Banner -->
+            <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-950 text-white p-6 sm:p-10 mb-8 shadow-xl border border-slate-800">
+                <!-- Dekorasi Latar -->
+                <div class="absolute -right-12 -top-12 w-56 h-56 rounded-full bg-amber-500/10 blur-2xl pointer-events-none"></div>
+                <div class="absolute -left-12 -bottom-12 w-48 h-48 rounded-full bg-indigo-500/15 blur-2xl pointer-events-none"></div>
+                
+                <div class="relative z-10">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/15 border border-amber-400/30 text-amber-300 text-xs font-semibold mb-4">
+                        <i class="fa-solid fa-hands-praying"></i>
+                        <span>Shalom & Selamat Melayani!</span>
+                    </div>
+                    <h1 class="font-display text-2xl sm:text-4xl font-extrabold tracking-tight text-white mb-3 leading-tight">
+                        Form Pendataan Usher <span class="text-amber-400 block sm:inline">— GBI PPL Majesty</span>
+                    </h1>
+                    <p class="text-slate-300 text-sm sm:text-base leading-relaxed max-w-2xl">
+                        Terima kasih atas kerinduan dan kesetiaan Anda menjadi perpanjangan tangan kasih Tuhan dalam menyambut setiap jemaat. Data ini membantu kami mempererat keakraban tim, mengatur jadwal pelayanan, dan saling mendukung dalam doa.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Form Container -->
+            <form id="usherForm" novalidate class="space-y-6 sm:space-y-8">
+                
+                <!-- BAGIAN 1: DATA PRIBADI & KONTAK -->
+                <section class="bg-white rounded-2xl shadow-sm border border-slate-200/80 overflow-hidden">
+                    <div class="bg-slate-50/80 px-6 py-4 border-b border-slate-200/80 flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-lg bg-indigo-100 text-indigo-700 flex items-center justify-center font-bold text-sm">1</div>
+                        <div>
+                            <h2 class="font-display font-bold text-slate-900 text-base sm:text-lg">Data Pribadi & Kontak</h2>
+                            <p class="text-xs text-slate-500">Informasi dasar untuk kebutuhan komunikasi dan koordinasi jadwal tim</p>
+                        </div>
+                    </div>
+
+                    <div class="p-6 space-y-5">
+                        <!-- Nama Lengkap & Nama Panggilan -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                            <div>
+                                <label for="namaLengkap" class="block text-sm font-semibold text-slate-700 mb-1.5">
+                                    Nama Lengkap <span class="text-rose-500">*</span>
+                                </label>
+                                <input type="text" id="namaLengkap" name="namaLengkap" required placeholder="Contoh: Yohanes Pratama"
+                                    class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition">
+                                <p id="err-namaLengkap" class="hidden text-xs text-rose-600 mt-1 font-medium"><i class="fa-solid fa-circle-exclamation mr-1"></i>Nama lengkap wajib diisi.</p>
+                            </div>
+                            <div>
+                                <label for="namaPanggilan" class="block text-sm font-semibold text-slate-700 mb-1.5">
+                                    Nama Panggilan <span class="text-rose-500">*</span>
+                                </label>
+                                <input type="text" id="namaPanggilan" name="namaPanggilan" required placeholder="Contoh: Yoel / Jo"
+                                    class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition">
+                                <p id="err-namaPanggilan" class="hidden text-xs text-rose-600 mt-1 font-medium"><i class="fa-solid fa-circle-exclamation mr-1"></i>Nama panggilan wajib diisi.</p>
+                            </div>
+                        </div>
+
+                        <!-- Jenis Kelamin & Status Pernikahan -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 mb-1.5">
+                                    Jenis Kelamin <span class="text-rose-500">*</span>
+                                </label>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <label class="cursor-pointer">
+                                        <input type="radio" name="jenisKelamin" value="Laki-laki" class="peer sr-only" required>
+                                        <div class="px-4 py-2.5 rounded-xl border border-slate-300 text-sm font-medium text-slate-600 text-center peer-checked:border-amber-500 peer-checked:bg-amber-50 peer-checked:text-amber-900 peer-checked:font-semibold transition flex items-center justify-center gap-2">
+                                            <i class="fa-solid fa-mars text-indigo-500"></i> Laki-laki
+                                        </div>
+                                    </label>
+                                    <label class="cursor-pointer">
+                                        <input type="radio" name="jenisKelamin" value="Perempuan" class="peer sr-only">
+                                        <div class="px-4 py-2.5 rounded-xl border border-slate-300 text-sm font-medium text-slate-600 text-center peer-checked:border-amber-500 peer-checked:bg-amber-50 peer-checked:text-amber-900 peer-checked:font-semibold transition flex items-center justify-center gap-2">
+                                            <i class="fa-solid fa-venus text-rose-500"></i> Perempuan
+                                        </div>
+                                    </label>
+                                </div>
+                                <p id="err-jenisKelamin" class="hidden text-xs text-rose-600 mt-1 font-medium"><i class="fa-solid fa-circle-exclamation mr-1"></i>Silakan pilih jenis kelamin.</p>
+                            </div>
+
+                            <div>
+                                <label for="statusPernikahan" class="block text-sm font-semibold text-slate-700 mb-1.5">
+                                    Status Pernikahan
+                                </label>
+                                <select id="statusPernikahan" name="statusPernikahan"
+                                    class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-slate-800 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition">
+                                    <option value="Belum Menikah">Belum Menikah</option>
+                                    <option value="Menikah">Menikah</option>
+                                    <option value="Duda / Janda">Duda / Janda</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Tempat Lahir & Tanggal Lahir -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                            <div>
+                                <label for="tempatLahir" class="block text-sm font-semibold text-slate-700 mb-1.5">
+                                    Tempat Lahir <span class="text-rose-500">*</span>
+                                </label>
+                                <input type="text" id="tempatLahir" name="tempatLahir" required placeholder="Contoh: Bandung"
+                                    class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition">
+                                <p id="err-tempatLahir" class="hidden text-xs text-rose-600 mt-1 font-medium"><i class="fa-solid fa-circle-exclamation mr-1"></i>Tempat lahir wajib diisi.</p>
+                            </div>
+                            <div>
+                                <label for="tanggalLahir" class="block text-sm font-semibold text-slate-700 mb-1.5">
+                                    Tanggal Lahir <span class="text-rose-500">*</span>
+                                </label>
+                                <input type="date" id="tanggalLahir" name="tanggalLahir" required
+                                    class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition">
+                                <p id="err-tanggalLahir" class="hidden text-xs text-rose-600 mt-1 font-medium"><i class="fa-solid fa-circle-exclamation mr-1"></i>Tanggal lahir wajib diisi.</p>
+                            </div>
+                        </div>
+
+                        <!-- Nomor WhatsApp & Pekerjaan -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                            <div>
+                                <label for="whatsapp" class="block text-sm font-semibold text-slate-700 mb-1.5">
+                                    Nomor WhatsApp / HP Aktif <span class="text-rose-500">*</span>
+                                </label>
+                                <div class="relative">
+                                    <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-emerald-600">
+                                        <i class="fa-brands fa-whatsapp text-lg"></i>
+                                    </span>
+                                    <input type="tel" id="whatsapp" name="whatsapp" required placeholder="Contoh: 081234567890"
+                                        class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-300 text-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition">
+                                </div>
+                                <p id="err-whatsapp" class="hidden text-xs text-rose-600 mt-1 font-medium"><i class="fa-solid fa-circle-exclamation mr-1"></i>Nomor WhatsApp aktif wajib diisi (minimal 9 digit).</p>
+                            </div>
+
+                            <div>
+                                <label for="pekerjaan" class="block text-sm font-semibold text-slate-700 mb-1.5">
+                                    Pekerjaan / Kesibukan Saat Ini
+                                </label>
+                                <select id="pekerjaan" name="pekerjaan"
+                                    class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-slate-800 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition">
+                                    <option value="Karyawan Swasta / BUMN">Karyawan Swasta / BUMN</option>
+                                    <option value="Mahasiswa / Pelajar">Mahasiswa / Pelajar</option>
+                                    <option value="Wirausaha / Pengusaha">Wirausaha / Pengusaha</option>
+                                    <option value="PNS / ASN / TNI / Polri">PNS / ASN / TNI / Polri</option>
+                                    <option value="Ibu Rumah Tangga">Ibu Rumah Tangga</option>
+                                    <option value="Freelancer / Pekerja Kreatif">Freelancer / Pekerja Kreatif</option>
+                                    <option value="Pensiunan / Lainnya">Pensiunan / Lainnya</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Alamat Domisili -->
+                        <div>
+                            <label for="alamat" class="block text-sm font-semibold text-slate-700 mb-1.5">
+                                Alamat Domisili Lengkap <span class="text-rose-500">*</span>
+                            </label>
+                            <textarea id="alamat" name="alamat" rows="2" required placeholder="Nama jalan, nomor rumah, RT/RW, kelurahan/kecamatan..."
+                                class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition"></textarea>
+                            <p id="err-alamat" class="hidden text-xs text-rose-600 mt-1 font-medium"><i class="fa-solid fa-circle-exclamation mr-1"></i>Alamat domisili wajib diisi.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- BAGIAN 2: MINAT & HOBI -->
+                <section class="bg-white rounded-2xl shadow-sm border border-slate-200/80 overflow-hidden">
+                    <div class="bg-slate-50/80 px-6 py-4 border-b border-slate-200/80 flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-lg bg-amber-100 text-amber-700 flex items-center justify-center font-bold text-sm">2</div>
+                        <div>
+                            <h2 class="font-display font-bold text-slate-900 text-base sm:text-lg">Minat & Hobi</h2>
+                            <p class="text-xs text-slate-500">Boleh pilih lebih dari satu untuk mempererat persekutuan & keakraban tim</p>
+                        </div>
+                    </div>
+
+                    <div class="p-6 space-y-4">
+                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3" id="hobi-container">
+                            <!-- Item Hobi -->
+                            <label class="cursor-pointer group">
+                                <input type="checkbox" name="hobi" value="Jalan-jalan / Traveling" class="peer sr-only">
+                                <div class="p-3 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-700 text-sm font-medium peer-checked:border-amber-500 peer-checked:bg-amber-50 peer-checked:text-amber-900 transition flex items-center gap-2.5">
+                                    <i class="fa-solid fa-plane-departure text-amber-600 w-4 text-center"></i>
+                                    <span>Jalan-jalan</span>
+                                </div>
+                            </label>
+
+                            <label class="cursor-pointer group">
+                                <input type="checkbox" name="hobi" value="Kuliner" class="peer sr-only">
+                                <div class="p-3 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-700 text-sm font-medium peer-checked:border-amber-500 peer-checked:bg-amber-50 peer-checked:text-amber-900 transition flex items-center gap-2.5">
+                                    <i class="fa-solid fa-utensils text-amber-600 w-4 text-center"></i>
+                                    <span>Kuliner</span>
+                                </div>
+                            </label>
+
+                            <label class="cursor-pointer group">
+                                <input type="checkbox" name="hobi" value="Olahraga" class="peer sr-only">
+                                <div class="p-3 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-700 text-sm font-medium peer-checked:border-amber-500 peer-checked:bg-amber-50 peer-checked:text-amber-900 transition flex items-center gap-2.5">
+                                    <i class="fa-solid fa-person-running text-amber-600 w-4 text-center"></i>
+                                    <span>Olahraga</span>
+                                </div>
+                            </label>
+
+                            <label class="cursor-pointer group">
+                                <input type="checkbox" name="hobi" value="Nonton Film/Series" class="peer sr-only">
+                                <div class="p-3 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-700 text-sm font-medium peer-checked:border-amber-500 peer-checked:bg-amber-50 peer-checked:text-amber-900 transition flex items-center gap-2.5">
+                                    <i class="fa-solid fa-film text-amber-600 w-4 text-center"></i>
+                                    <span>Nonton</span>
+                                </div>
+                            </label>
+
+                            <label class="cursor-pointer group">
+                                <input type="checkbox" name="hobi" value="Musik" class="peer sr-only">
+                                <div class="p-3 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-700 text-sm font-medium peer-checked:border-amber-500 peer-checked:bg-amber-50 peer-checked:text-amber-900 transition flex items-center gap-2.5">
+                                    <i class="fa-solid fa-music text-amber-600 w-4 text-center"></i>
+                                    <span>Musik</span>
+                                </div>
+                            </label>
+
+                            <label class="cursor-pointer group">
+                                <input type="checkbox" name="hobi" value="Membaca" class="peer sr-only">
+                                <div class="p-3 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-700 text-sm font-medium peer-checked:border-amber-500 peer-checked:bg-amber-50 peer-checked:text-amber-900 transition flex items-center gap-2.5">
+                                    <i class="fa-solid fa-book-open text-amber-600 w-4 text-center"></i>
+                                    <span>Membaca</span>
+                                </div>
+                            </label>
+
+                            <label class="cursor-pointer group">
+                                <input type="checkbox" name="hobi" value="Fotografi" class="peer sr-only">
+                                <div class="p-3 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-700 text-sm font-medium peer-checked:border-amber-500 peer-checked:bg-amber-50 peer-checked:text-amber-900 transition flex items-center gap-2.5">
+                                    <i class="fa-solid fa-camera text-amber-600 w-4 text-center"></i>
+                                    <span>Fotografi</span>
+                                </div>
+                            </label>
+
+                            <label class="cursor-pointer group">
+                                <input type="checkbox" name="hobi" value="Gaming" class="peer sr-only">
+                                <div class="p-3 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-700 text-sm font-medium peer-checked:border-amber-500 peer-checked:bg-amber-50 peer-checked:text-amber-900 transition flex items-center gap-2.5">
+                                    <i class="fa-solid fa-gamepad text-amber-600 w-4 text-center"></i>
+                                    <span>Gaming</span>
+                                </div>
+                            </label>
+
+                            <!-- Checkbox Lain-lain -->
+                            <label class="cursor-pointer group">
+                                <input type="checkbox" id="chk-hobi-lain" name="hobiLainCheck" value="Lain-lain" onchange="toggleOtherInput('chk-hobi-lain', 'box-hobi-lain', 'input-hobi-lain')" class="peer sr-only">
+                                <div class="p-3 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-700 text-sm font-medium peer-checked:border-indigo-500 peer-checked:bg-indigo-50 peer-checked:text-indigo-900 transition flex items-center gap-2.5">
+                                    <i class="fa-solid fa-plus-circle text-indigo-600 w-4 text-center"></i>
+                                    <span>Lain-lain...</span>
+                                </div>
+                            </label>
+                        </div>
+
+                        <!-- Input Teks Muncul Saat Hobi Lain-lain Dicentang -->
+                        <div id="box-hobi-lain" class="hidden fade-in pt-1">
+                            <label for="input-hobi-lain" class="block text-xs font-semibold text-indigo-800 mb-1">
+                                Sebutkan hobi spesifik Anda lainnya:
+                            </label>
+                            <input type="text" id="input-hobi-lain" placeholder="Contoh: Fotografi, Memasak, Bersepeda, Berkebun..."
+                                class="w-full px-4 py-2.5 rounded-xl border border-indigo-300 bg-indigo-50/30 text-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition">
+                        </div>
+                    </div>
+                </section>
+
+                <!-- BAGIAN 3: KETERSEDIAAN & PELAYANAN TAMBAHAN -->
+                <section class="bg-white rounded-2xl shadow-sm border border-slate-200/80 overflow-hidden">
+                    <div class="bg-slate-50/80 px-6 py-4 border-b border-slate-200/80 flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-sm">3</div>
+                        <div>
+                            <h2 class="font-display font-bold text-slate-900 text-base sm:text-lg">Ketersediaan & Pelayanan Tambahan</h2>
+                            <p class="text-xs text-slate-500">Membantu penyusunan jadwal tugas & pengembangan karunia pelayanan Anda</p>
+                        </div>
+                    </div>
+
+                    <div class="p-6 space-y-6">
+                        <!-- Jadwal Ibadah -->
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 mb-2">
+                                Jadwal Ibadah yang Biasa Diikuti / Bersedia Melayani <span class="text-rose-500">*</span>
+                            </label>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <label class="cursor-pointer">
+                                    <input type="checkbox" name="jadwalIbadah" value="Ibadah Raya 1" class="peer sr-only">
+                                    <div class="p-3 rounded-xl border border-slate-200 text-sm font-medium text-slate-700 peer-checked:border-emerald-500 peer-checked:bg-emerald-50 peer-checked:text-emerald-900 transition flex items-center justify-between">
+                                        <span>Ibadah Raya 1</span>
+                                        <i class="fa-regular fa-clock text-slate-400"></i>
+                                    </div>
+                                </label>
+                                <label class="cursor-pointer">
+                                    <input type="checkbox" name="jadwalIbadah" value="Ibadah Raya 2" class="peer sr-only">
+                                    <div class="p-3 rounded-xl border border-slate-200 text-sm font-medium text-slate-700 peer-checked:border-emerald-500 peer-checked:bg-emerald-50 peer-checked:text-emerald-900 transition flex items-center justify-between">
+                                        <span>Ibadah Raya 2</span>
+                                        <i class="fa-regular fa-clock text-slate-400"></i>
+                                    </div>
+                                </label>
+                                <label class="cursor-pointer">
+                                    <input type="checkbox" name="jadwalIbadah" value="Ibadah Raya 3" class="peer sr-only">
+                                    <div class="p-3 rounded-xl border border-slate-200 text-sm font-medium text-slate-700 peer-checked:border-emerald-500 peer-checked:bg-emerald-50 peer-checked:text-emerald-900 transition flex items-center justify-between">
+                                        <span>Ibadah Raya 3</span>
+                                        <i class="fa-regular fa-clock text-slate-400"></i>
+                                    </div>
+                                </label>
+                                <label class="cursor-pointer">
+                                    <input type="checkbox" name="jadwalIbadah" value="Ibadah Youth / Pemuda" class="peer sr-only">
+                                    <div class="p-3 rounded-xl border border-slate-200 text-sm font-medium text-slate-700 peer-checked:border-emerald-500 peer-checked:bg-emerald-50 peer-checked:text-emerald-900 transition flex items-center justify-between">
+                                        <span>Ibadah Youth / Pemuda</span>
+                                        <i class="fa-solid fa-fire text-slate-400"></i>
+                                    </div>
+                                </label>
+                                <label class="cursor-pointer sm:col-span-2">
+                                    <input type="checkbox" name="jadwalIbadah" value="Acara Khusus / Natal / Paskah" class="peer sr-only">
+                                    <div class="p-3 rounded-xl border border-slate-200 text-sm font-medium text-slate-700 peer-checked:border-emerald-500 peer-checked:bg-emerald-50 peer-checked:text-emerald-900 transition flex items-center justify-between">
+                                        <span>Acara Khusus / Natal / Paskah</span>
+                                        <i class="fa-solid fa-calendar-day text-slate-400"></i>
+                                    </div>
+                                </label>
+                            </div>
+                            <p id="err-jadwalIbadah" class="hidden text-xs text-rose-600 mt-1.5 font-medium"><i class="fa-solid fa-circle-exclamation mr-1"></i>Pilih minimal satu jadwal ibadah.</p>
+                        </div>
+
+                        <!-- Lama Melayani -->
+                        <div>
+                            <label for="lamaMelayani" class="block text-sm font-semibold text-slate-700 mb-1.5">
+                                Sudah Berapa Lama Melayani sebagai Usher?
+                            </label>
+                            <select id="lamaMelayani" name="lamaMelayani"
+                                class="w-full sm:w-1/2 px-4 py-2.5 rounded-xl border border-slate-300 text-slate-800 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition">
+                                <option value="Baru bergabung / < 6 bulan">Baru bergabung / &lt; 6 bulan</option>
+                                <option value="6 bulan - 1 tahun">6 bulan - 1 tahun</option>
+                                <option value="1 - 3 tahun">1 - 3 tahun</option>
+                                <option value="> 3 tahun">Lebih dari 3 tahun (&gt; 3 tahun)</option>
+                            </select>
+                        </div>
+
+                        <!-- Minat Pelayanan Lain -->
+                        <div class="pt-2 border-t border-slate-100">
+                            <label class="block text-sm font-semibold text-slate-700 mb-1">
+                                Minat / Kerinduan Pelayanan Lain (Selain Usher)
+                            </label>
+                            <p class="text-xs text-slate-500 mb-3">Opsional — Centang jika Anda memiliki kerinduan melayani di bidang lain juga.</p>
+                            
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                                <label class="cursor-pointer">
+                                    <input type="checkbox" name="pelayananLain" value="Multimedia / Sound / Visual" class="peer sr-only">
+                                    <div class="p-3 rounded-xl border border-slate-200 text-sm font-medium text-slate-700 peer-checked:border-amber-500 peer-checked:bg-amber-50 peer-checked:text-amber-900 transition flex items-center gap-2.5">
+                                        <i class="fa-solid fa-sliders text-amber-600 w-4 text-center"></i>
+                                        <span>Multimedia / Sound / Visual</span>
+                                    </div>
+                                </label>
+
+                                <label class="cursor-pointer">
+                                    <input type="checkbox" name="pelayananLain" value="Singer / Pemusik" class="peer sr-only">
+                                    <div class="p-3 rounded-xl border border-slate-200 text-sm font-medium text-slate-700 peer-checked:border-amber-500 peer-checked:bg-amber-50 peer-checked:text-amber-900 transition flex items-center gap-2.5">
+                                        <i class="fa-solid fa-guitar text-amber-600 w-4 text-center"></i>
+                                        <span>Singer / Pemusik</span>
+                                    </div>
+                                </label>
+
+                                <label class="cursor-pointer">
+                                    <input type="checkbox" name="pelayananLain" value="Hospitality / Welcome Team" class="peer sr-only">
+                                    <div class="p-3 rounded-xl border border-slate-200 text-sm font-medium text-slate-700 peer-checked:border-amber-500 peer-checked:bg-amber-50 peer-checked:text-amber-900 transition flex items-center gap-2.5">
+                                        <i class="fa-solid fa-mug-hot text-amber-600 w-4 text-center"></i>
+                                        <span>Hospitality / Welcome</span>
+                                    </div>
+                                </label>
+
+                                <label class="cursor-pointer">
+                                    <input type="checkbox" name="pelayananLain" value="Sekolah Minggu / Kids" class="peer sr-only">
+                                    <div class="p-3 rounded-xl border border-slate-200 text-sm font-medium text-slate-700 peer-checked:border-amber-500 peer-checked:bg-amber-50 peer-checked:text-amber-900 transition flex items-center gap-2.5">
+                                        <i class="fa-solid fa-children text-amber-600 w-4 text-center"></i>
+                                        <span>Sekolah Minggu / Kids</span>
+                                    </div>
+                                </label>
+
+                                <label class="cursor-pointer sm:col-span-2">
+                                    <input type="checkbox" name="pelayananLain" value="Fokus Usher dulu" class="peer sr-only">
+                                    <div class="p-3 rounded-xl border border-slate-200 text-sm font-medium text-slate-700 peer-checked:border-slate-600 peer-checked:bg-slate-100 peer-checked:text-slate-900 transition flex items-center gap-2.5">
+                                        <i class="fa-solid fa-user-check text-slate-600 w-4 text-center"></i>
+                                        <span>Belum ada / Fokus Usher dulu</span>
+                                    </div>
+                                </label>
+
+                                <label class="cursor-pointer">
+                                    <input type="checkbox" id="chk-pelayanan-lain" name="pelayananLainCheck" value="Lainnya" onchange="toggleOtherInput('chk-pelayanan-lain', 'box-pelayanan-lain', 'input-pelayanan-lain')" class="peer sr-only">
+                                    <div class="p-3 rounded-xl border border-slate-200 text-sm font-medium text-slate-700 peer-checked:border-indigo-500 peer-checked:bg-indigo-50 peer-checked:text-indigo-900 transition flex items-center gap-2.5">
+                                        <i class="fa-solid fa-plus-circle text-indigo-600 w-4 text-center"></i>
+                                        <span>Lainnya...</span>
+                                    </div>
+                                </label>
+                            </div>
+
+                            <!-- Input Teks Muncul Saat Pelayanan Lainnya Dicentang -->
+                            <div id="box-pelayanan-lain" class="hidden fade-in mt-3">
+                                <label for="input-pelayanan-lain" class="block text-xs font-semibold text-indigo-800 mb-1">
+                                    Sebutkan bidang pelayanan lain yang Anda minati:
+                                </label>
+                                <input type="text" id="input-pelayanan-lain" placeholder="Contoh: Desain Grafis, Konseling, Diakonia / Sosial..."
+                                    class="w-full px-4 py-2.5 rounded-xl border border-indigo-300 bg-indigo-50/30 text-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- BAGIAN 4: PERGUMULAN & POKOK DOA -->
+                <section class="bg-white rounded-2xl shadow-sm border border-slate-200/80 overflow-hidden">
+                    <div class="bg-slate-50/80 px-6 py-4 border-b border-slate-200/80 flex items-center justify-between flex-wrap gap-2">
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-lg bg-rose-100 text-rose-700 flex items-center justify-center font-bold text-sm">4</div>
+                            <div>
+                                <h2 class="font-display font-bold text-slate-900 text-base sm:text-lg">Pergumulan & Pokok Doa</h2>
+                                <p class="text-xs text-slate-500">Kami rindu menopang Anda dalam doa</p>
+                            </div>
+                        </div>
+                        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-200/70 text-slate-700 text-[11px] font-semibold">
+                            <i class="fa-solid fa-lock text-slate-500"></i> Bersifat Rahasia (Confidential)
+                        </span>
+                    </div>
+
+                    <div class="p-6">
+                        <label for="pokokDoa" class="block text-sm font-medium text-slate-700 mb-2 leading-relaxed">
+                            Apakah ada pergumulan pribadi, keluarga, pekerjaan, kesehatan, atau beban doa khusus yang ingin didoakan oleh tim pendoa / penggembalaan gereja?
+                        </label>
+                        <textarea id="pokokDoa" name="pokokDoa" rows="4" placeholder="Tuliskan pokok doa atau beban hati Anda di sini (opsional). Tim pendoa & penggembalaan GBI PPL Majesty akan menjaga kerahasiaan setiap pergumulan Anda..."
+                            class="w-full px-4 py-3 rounded-xl border border-slate-300 text-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition"></textarea>
+                    </div>
+                </section>
+
+                <!-- Submit Button Area -->
+                <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2 pb-8">
+                    <p class="text-xs text-slate-500 text-center sm:text-left">
+                        <span class="text-rose-500 font-bold">*</span> Menandakan kolom wajib diisi.
+                    </p>
+                    <button type="submit" id="btnSubmitForm" class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-display font-bold text-sm sm:text-base shadow-lg shadow-amber-500/25 transition transform active:scale-[0.99] flex items-center justify-center gap-2.5 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed">
+                        <i id="submit-icon" class="fa-solid fa-paper-plane"></i>
+                        <span id="submit-text">Kirim Data Usher</span>
+                    </button>
+                </div>
+
+            </form>
+
+            <!-- KONFIRMASI SUKSES (Muncul setelah submit) -->
+            <div id="success-screen" class="hidden fade-in bg-white rounded-3xl shadow-xl border border-slate-200 p-6 sm:p-10 text-center max-w-2xl mx-auto my-4">
+                <div class="w-16 h-16 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto mb-5 text-3xl shadow-inner">
+                    <i class="fa-solid fa-circle-check"></i>
+                </div>
+                <h2 class="font-display text-2xl sm:text-3xl font-extrabold text-slate-900 mb-2">
+                    Terima Kasih, <span id="conf-nama" class="text-amber-600">Pelayan Tuhan</span>!
+                </h2>
+                <p class="text-slate-600 text-sm sm:text-base mb-6 leading-relaxed">
+                    Data Anda telah berhasil tercatat di sistem pendataan Usher <strong>GBI PPL Majesty</strong>. Tuhan Yesus memberkati setiap langkah dan pelayanan Anda!
+                </p>
+
+                <!-- Ringkasan Data -->
+                <div class="bg-slate-50 rounded-2xl border border-slate-200/90 p-5 text-left mb-7 space-y-3 text-sm">
+                    <div class="text-xs font-bold uppercase tracking-wider text-slate-400 border-b border-slate-200 pb-2">
+                        Ringkasan Data Terkirim
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-y-2.5 gap-x-4" id="conf-summary-grid">
+                        <!-- Diisi via JS -->
+                    </div>
+                </div>
+
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
+                    <button type="button" onclick="resetToForm()" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-semibold text-sm transition flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-plus"></i> Isi Form Lagi
+                    </button>
+                    <button type="button" onclick="switchTab('admin')" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-amber-100 hover:bg-amber-200 text-amber-900 font-semibold text-sm transition flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-table-list"></i> Lihat Semua Data Terkumpul
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- VIEW 2: ADMIN VIEW / DATA TERKUMPUL -->
+        <!-- ========================================== -->
+        <div id="view-admin" class="hidden fade-in space-y-6">
+
+            <!-- LAYAR KUNCI PIN ADMIN -->
+            <div id="admin-pin-screen" class="bg-white rounded-3xl shadow-xl border border-slate-200 p-6 sm:p-10 max-w-md mx-auto my-6 text-center">
+                <div class="w-16 h-16 rounded-2xl bg-slate-900 text-amber-400 flex items-center justify-center mx-auto mb-5 text-2xl shadow-md">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <h2 class="font-display text-xl sm:text-2xl font-extrabold text-slate-900 mb-1.5">Akses Pengurus / Admin</h2>
+                <p class="text-xs sm:text-sm text-slate-500 mb-6 leading-relaxed">
+                    Masukkan PIN keamanan untuk melihat database usher, konfigurasi Google Sheet, dan pokok doa jemaat yang bersifat rahasia.
+                </p>
+
+                <form id="pinForm" onsubmit="verifyAdminPin(event)" class="space-y-4">
+                    <div>
+                        <input type="password" id="adminPinInput" inputmode="numeric" maxlength="8" placeholder="••••" required
+                            class="w-full text-center tracking-[0.5em] font-display font-bold text-xl px-4 py-3 rounded-xl border border-slate-300 text-slate-900 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500">
+                        <p id="err-pin" class="hidden text-xs text-rose-600 mt-1.5 font-medium">
+                            <i class="fa-solid fa-circle-exclamation mr-1"></i>PIN salah. Silakan coba lagi.
+                        </p>
+                    </div>
+                    <button type="submit" class="w-full py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-display font-bold text-sm transition cursor-pointer flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-unlock-keyhole text-amber-400"></i>
+                        <span>Buka Dashboard Admin</span>
+                    </button>
+                </form>
+
+                <div class="mt-5 pt-4 border-t border-slate-100 text-[11px] text-slate-400">
+                    PIN default awal: <strong class="text-slate-600">1234</strong> (dapat diubah di pengaturan setelah masuk)
+                </div>
+            </div>
+
+            <!-- KONTEN DASHBOARD ADMIN (Setelah PIN Terverifikasi) -->
+            <div id="admin-dashboard-content" class="hidden space-y-6">
+                <!-- Header Admin & Status Koneksi -->
+                <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 space-y-4">
+                    <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+                        <div>
+                            <div class="flex flex-wrap items-center gap-2 mb-1.5">
+                                <span class="px-2.5 py-0.5 rounded-md bg-indigo-100 text-indigo-800 text-xs font-bold">Admin Dashboard</span>
+                                <span id="connection-status-badge" class="px-2.5 py-0.5 rounded-md bg-amber-100 text-amber-800 text-xs font-semibold flex items-center gap-1.5">
+                                    <i class="fa-solid fa-circle text-[8px]"></i>
+                                    <span>Mode Offline / Belum Terhubung Google Sheet</span>
+                                </span>
+                            </div>
+                            <h2 class="font-display text-xl sm:text-2xl font-extrabold text-slate-900">Database Usher GBI PPL Majesty</h2>
+                            <p id="last-synced-text" class="text-xs text-slate-500 mt-0.5">Hubungkan URL Web App Google Apps Script untuk sinkronisasi otomatis.</p>
+                        </div>
+
+                        <div class="flex flex-wrap items-center gap-2">
+                            <button type="button" onclick="fetchFromGoogleSheet(true)" id="btn-refresh-sheet" class="px-3.5 py-2 rounded-xl bg-indigo-50 hover:bg-indigo-100 text-indigo-700 font-semibold text-xs sm:text-sm transition flex items-center gap-1.5 cursor-pointer">
+                                <i class="fa-solid fa-arrows-rotate" id="refresh-icon"></i>
+                                <span>Refresh Data</span>
+                            </button>
+                            <button type="button" onclick="toggleSettingsDrawer()" class="px-3.5 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-semibold text-xs sm:text-sm transition flex items-center gap-1.5 cursor-pointer">
+                                <i class="fa-solid fa-gear text-amber-400"></i>
+                                <span>Pengaturan & Sheet</span>
+                            </button>
+                            <button type="button" onclick="exportToCSV()" class="px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs sm:text-sm shadow-sm transition flex items-center gap-1.5 cursor-pointer">
+                                <i class="fa-solid fa-file-excel"></i>
+                                <span>Export CSV</span>
+                            </button>
+                            <button type="button" onclick="lockAdminSession()" class="px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 font-semibold text-xs sm:text-sm transition cursor-pointer" title="Kunci Halaman Admin">
+                                <i class="fa-solid fa-lock"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Banner Peringatan Jika URL Google Sheet Belum Diisi -->
+                    <div id="unconfigured-alert" class="bg-amber-50 border border-amber-200 rounded-xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                        <div class="flex items-start gap-3">
+                            <i class="fa-solid fa-triangle-exclamation text-amber-600 mt-0.5 text-base"></i>
+                            <div class="text-xs sm:text-sm text-amber-900">
+                                <strong>Google Sheet belum terhubung.</strong> Klik tombol <strong>Pengaturan & Sheet</strong> untuk menempelkan Web App URL dari Google Apps Script agar data dari HP usher masuk ke spreadsheet <span class="underline">katumiri52@gmail.com</span>.
+                            </div>
+                        </div>
+                        <button type="button" onclick="openSetupGuideModal()" class="shrink-0 px-3.5 py-2 rounded-lg bg-amber-600 hover:bg-amber-700 text-white font-semibold text-xs transition cursor-pointer">
+                            Lihat Panduan Setup
+                        </button>
+                    </div>
+                </div>
+
+                <!-- DRAWER PENGATURAN GOOGLE SHEET & PIN ADMIN -->
+                <div id="admin-settings-drawer" class="hidden fade-in bg-white rounded-2xl p-6 shadow-md border-2 border-indigo-200 space-y-6">
+                    <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-sliders text-indigo-600"></i>
+                            <h3 class="font-display font-bold text-base sm:text-lg text-slate-900">Pengaturan Integrasi Google Sheet & Keamanan</h3>
+                        </div>
+                        <button type="button" onclick="toggleSettingsDrawer()" class="text-slate-400 hover:text-slate-600">
+                            <i class="fa-solid fa-xmark text-lg"></i>
+                        </button>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <!-- Konfigurasi URL Google Apps Script -->
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <label for="scriptUrlInput" class="block text-sm font-bold text-slate-800">
+                                    Google Apps Script Web App URL
+                                </label>
+                                <button type="button" onclick="openSetupGuideModal()" class="text-xs font-semibold text-indigo-600 hover:underline cursor-pointer">
+                                    <i class="fa-solid fa-circle-question mr-1"></i>Panduan & Kode Script
+                                </button>
+                            </div>
+                            <input type="url" id="scriptUrlInput" placeholder="https://script.google.com/macros/s/AKfycb.../exec"
+                                class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs sm:text-sm font-mono text-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                            <p class="text-[11px] text-slate-500 leading-relaxed">
+                                Tip: Untuk dibagikan ke seluruh HP usher secara permanen, Anda juga dapat mengisi konstanta <code class="bg-slate-100 px-1 py-0.5 rounded text-slate-700">DEFAULT_SCRIPT_URL</code> di bagian atas kode JavaScript file ini sebelum di-hosting.
+                            </p>
+                            <div class="flex flex-wrap gap-2 pt-1">
+                                <button type="button" onclick="saveAndTestScriptUrl()" id="btn-test-url" class="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-xs transition flex items-center gap-1.5 cursor-pointer">
+                                    <i class="fa-solid fa-plug-circle-check"></i>
+                                    <span>Simpan & Tes Koneksi</span>
+                                </button>
+                                <button type="button" onclick="clearScriptUrl()" class="px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 font-semibold text-xs transition cursor-pointer">
+                                    Reset URL
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Pengaturan Ubah PIN Admin -->
+                        <div class="space-y-3 lg:border-l lg:border-slate-100 lg:pl-6">
+                            <label for="newAdminPinInput" class="block text-sm font-bold text-slate-800">
+                                Ubah PIN Akses Admin (Browser Ini)
+                            </label>
+                            <div class="flex gap-2">
+                                <input type="password" id="newAdminPinInput" inputmode="numeric" maxlength="8" placeholder="Masukkan PIN baru (min. 4 angka)"
+                                    class="flex-grow px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-amber-500">
+                                <button type="button" onclick="changeAdminPin()" class="px-4 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-xs transition shrink-0 cursor-pointer">
+                                    Simpan PIN
+                                </button>
+                            </div>
+                            <p class="text-[11px] text-slate-500 leading-relaxed">
+                                PIN default di dalam kode sumber adalah <code class="bg-slate-100 px-1 py-0.5 rounded text-slate-700">DEFAULT_ADMIN_PIN = "1234"</code>. Ubah konstanta tersebut di file HTML jika ingin mengganti PIN default untuk semua perangkat.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Statistik Ringkas -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+                    <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
+                        <div class="text-xs font-semibold text-slate-400 uppercase">Total Usher</div>
+                        <div id="stat-total" class="font-display text-2xl font-extrabold text-slate-900 mt-1">0</div>
+                    </div>
+                    <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
+                        <div class="text-xs font-semibold text-slate-400 uppercase">Laki-laki / Perempuan</div>
+                        <div id="stat-gender" class="font-display text-lg sm:text-xl font-extrabold text-indigo-600 mt-1">0 / 0</div>
+                    </div>
+                    <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
+                        <div class="text-xs font-semibold text-slate-400 uppercase">Minat Pelayanan Lain</div>
+                        <div id="stat-extra" class="font-display text-2xl font-extrabold text-amber-600 mt-1">0</div>
+                    </div>
+                    <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
+                        <div class="text-xs font-semibold text-slate-400 uppercase">Ada Pokok Doa</div>
+                        <div id="stat-prayer" class="font-display text-2xl font-extrabold text-rose-600 mt-1">0</div>
+                    </div>
+                </div>
+
+                <!-- Filter & Pencarian -->
+                <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm flex flex-col sm:flex-row gap-3">
+                    <div class="relative flex-grow">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+                        <input type="text" id="searchInput" oninput="renderAdminTable()" placeholder="Cari nama, panggilan, alamat, hobi, atau pelayanan..."
+                            class="w-full pl-10 pr-4 py-2 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500">
+                    </div>
+                    <select id="filterJadwal" onchange="renderAdminTable()" class="px-3.5 py-2 rounded-xl border border-slate-300 text-sm bg-white text-slate-700 focus:outline-none focus:ring-2 focus:ring-amber-500">
+                        <option value="">Semua Jadwal Ibadah</option>
+                        <option value="Ibadah Raya 1">Ibadah Raya 1</option>
+                        <option value="Ibadah Raya 2">Ibadah Raya 2</option>
+                        <option value="Ibadah Raya 3">Ibadah Raya 3</option>
+                        <option value="Ibadah Youth / Pemuda">Ibadah Youth / Pemuda</option>
+                        <option value="Acara Khusus / Natal / Paskah">Acara Khusus / Natal / Paskah</option>
+                    </select>
+                    <select id="filterPelayanan" onchange="renderAdminTable()" class="px-3.5 py-2 rounded-xl border border-slate-300 text-sm bg-white text-slate-700 focus:outline-none focus:ring-2 focus:ring-amber-500">
+                        <option value="">Semua Minat Pelayanan</option>
+                        <option value="Announcer">Announcer / MC</option>
+                        <option value="Tim Pendoa">Tim Pendoa / Syafaat</option>
+                        <option value="Multimedia">Multimedia / Sound / Visual</option>
+                        <option value="Singer">Singer / Pemusik</option>
+                        <option value="Hospitality">Hospitality / Welcome</option>
+                        <option value="Sekolah Minggu">Sekolah Minggu / Kids</option>
+                        <option value="HAS_PRAYER">Memiliki Pokok Doa</option>
+                    </select>
+                </div>
+
+                <!-- Daftar Kartu / Tabel Data -->
+                <div id="admin-list-container" class="space-y-4">
+                    <!-- Dirender via JS -->
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 py-6 mt-auto">
+        <div class="max-w-5xl mx-auto px-4 text-center text-xs text-slate-500">
+            <p class="font-semibold text-slate-700">Gereja Bethel Indonesia (GBI) PPL Majesty — Tim Usher & Hospitality</p>
+            <p class="mt-1">"Layani seorang akan yang lain, sesuai dengan karunia yang telah diperoleh tiap-tiap orang..." — 1 Petrus 4:10</p>
+        </div>
+    </footer>
+
+    <!-- Modal Detail & Pokok Doa -->
+    <div id="detailModal" class="hidden fixed inset-0 z-50 bg-slate-950/60 backdrop-blur-xs flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-slate-200 fade-in">
+            <div class="px-6 py-4 border-b border-slate-200 flex items-center justify-between sticky top-0 bg-white z-10">
+                <h3 class="font-display font-bold text-lg text-slate-900" id="modalTitle">Detail Data Usher</h3>
+                <button type="button" onclick="closeModal()" class="w-8 h-8 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center cursor-pointer">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="p-6 space-y-4 text-sm" id="modalBody">
+                <!-- Konten detail -->
+            </div>
+            <div class="px-6 py-3.5 bg-slate-50 border-t border-slate-200 flex justify-end">
+                <button type="button" onclick="closeModal()" class="px-5 py-2 rounded-xl bg-slate-900 text-white font-semibold text-xs sm:text-sm hover:bg-slate-800 transition cursor-pointer">
+                    Tutup
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Panduan Setup Google Sheet & Apps Script -->
+    <div id="setupGuideModal" class="hidden fixed inset-0 z-50 bg-slate-950/60 backdrop-blur-xs flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-slate-200 fade-in">
+            <div class="px-6 py-4 border-b border-slate-200 flex items-center justify-between sticky top-0 bg-white z-10">
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-table text-emerald-600 text-lg"></i>
+                    <h3 class="font-display font-bold text-base sm:text-lg text-slate-900">Panduan Integrasi Google Sheet (katumiri52@gmail.com)</h3>
+                </div>
+                <button type="button" onclick="closeSetupGuideModal()" class="w-8 h-8 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center cursor-pointer">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="p-6 space-y-5 text-xs sm:text-sm text-slate-700 leading-relaxed">
+                <div>
+                    <h4 class="font-bold text-slate-900 mb-1">1. Buat Google Sheet & Header Kolom (A1 - N1)</h4>
+                    <p class="text-slate-600 mb-2">Buat spreadsheet baru, beri nama tab bawah <code class="bg-slate-100 px-1.5 py-0.5 rounded font-semibold">Data_Usher</code>, lalu isi Baris 1 dari kolom A sampai N:</p>
+                    <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 font-mono text-[11px] overflow-x-auto whitespace-nowrap text-slate-800">
+                        Timestamp | Nama Lengkap | Nama Panggilan | Jenis Kelamin | Tempat, Tanggal Lahir | No. WhatsApp | Alamat Domisili | Status Pernikahan | Pekerjaan / Kesibukan | Minat & Hobi | Jadwal Ibadah | Lama Melayani | Minat Pelayanan Lain | Pergumulan & Pokok Doa
+                    </div>
+                </div>
+
+                <div>
+                    <div class="flex items-center justify-between mb-1">
+                        <h4 class="font-bold text-slate-900">2. Pasang Kode di Extensions &gt; Apps Script</h4>
+                        <button type="button" onclick="copyAppsScriptCode()" class="px-2.5 py-1 rounded-lg bg-indigo-100 hover:bg-indigo-200 text-indigo-800 font-semibold text-xs transition cursor-pointer">
+                            <i class="fa-regular fa-copy mr-1"></i>Salin Kode Script
+                        </button>
+                    </div>
+                    <pre id="appsScriptCodeBlock" class="bg-slate-900 text-slate-100 p-3.5 rounded-xl text-[11px] font-mono overflow-x-auto leading-normal">const SHEET_NAME = 'Data_Usher';
+
+function doPost(e) {
+  try {
+    const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(SHEET_NAME);
+    const data = JSON.parse(e.postData.contents);
+    sheet.appendRow([
+      new Date(),
+      data.namaLengkap || '',
+      data.namaPanggilan || '',
+      data.jenisKelamin || '',
+      data.ttl || '',
+      "'" + (data.whatsapp || ''),
+      data.alamat || '',
+      data.status || '',
+      data.pekerjaan || '',
+      Array.isArray(data.hobi) ? data.hobi.join(', ') : (data.hobi || ''),
+      Array.isArray(data.jadwal) ? data.jadwal.join(', ') : (data.jadwal || ''),
+      data.lamaMelayani || '',
+      Array.isArray(data.pelayananLain) ? data.pelayananLain.join(', ') : (data.pelayananLain || ''),
+      data.pokokDoa || ''
+    ]);
+    return ContentService.createTextOutput(JSON.stringify({ status: 'success' })).setMimeType(ContentService.MimeType.JSON);
+  } catch (err) {
+    return ContentService.createTextOutput(JSON.stringify({ status: 'error', message: err.toString() })).setMimeType(ContentService.MimeType.JSON);
+  }
+}
+
+function doGet(e) {
+  try {
+    const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(SHEET_NAME);
+    const rows = sheet.getDataRange().getValues();
+    const records = [];
+    for (let i = 1; i &lt; rows.length; i++) {
+      const r = rows[i];
+      if (!r[1] &amp;&amp; !r[2]) continue;
+      records.push({
+        timestamp: r[0], namaLengkap: r[1], namaPanggilan: r[2],
+        jenisKelamin: r[3], ttl: r[4], whatsapp: String(r[5]).replace(/^'/, ''),
+        alamat: r[6], status: r[7], pekerjaan: r[8],
+        hobi: r[9], jadwal: r[10], lamaMelayani: r[11],
+        pelayananLain: r[12], pokokDoa: r[13]
+      });
+    }
+    return ContentService.createTextOutput(JSON.stringify({ status: 'success', data: records.reverse() })).setMimeType(ContentService.MimeType.JSON);
+  } catch (err) {
+    return ContentService.createTextOutput(JSON.stringify({ status: 'error', message: err.toString() })).setMimeType(ContentService.MimeType.JSON);
+  }
+}</pre>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-slate-900 mb-1">3. Deploy sebagai Web App</h4>
+                    <ul class="list-disc pl-5 space-y-1 text-slate-600">
+                        <li>Klik <strong>Deploy &gt; New deployment</strong> &gt; pilih tipe <strong>Web app</strong>.</li>
+                        <li>Set <strong>Execute as:</strong> <code class="bg-slate-100 px-1 rounded">Me (katumiri52@gmail.com)</code>.</li>
+                        <li>Set <strong>Who has access:</strong> <code class="bg-amber-100 text-amber-900 font-semibold px-1 rounded">Anyone</code> (wajib agar usher tidak perlu login).</li>
+                        <li>Klik <strong>Deploy</strong>, izinkan akses (*Authorize*), lalu salin URL <code class="bg-slate-100 px-1 rounded">.../exec</code> ke kolom Pengaturan di atas.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="px-6 py-3.5 bg-slate-50 border-t border-slate-200 flex justify-end">
+                <button type="button" onclick="closeSetupGuideModal()" class="px-5 py-2 rounded-xl bg-slate-900 text-white font-semibold text-xs sm:text-sm hover:bg-slate-800 transition cursor-pointer">
+                    Mengerti
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Konfirmasi Hapus Lokal -->
+    <div id="deleteModal" class="hidden fixed inset-0 z-50 bg-slate-950/60 backdrop-blur-xs flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-sm w-full p-6 shadow-2xl border border-slate-200 fade-in text-center">
+            <div class="w-12 h-12 rounded-full bg-rose-100 text-rose-600 flex items-center justify-center mx-auto mb-3 text-xl">
+                <i class="fa-solid fa-trash-can"></i>
+            </div>
+            <h3 class="font-display font-bold text-lg text-slate-900 mb-1">Hapus Data Lokal Ini?</h3>
+            <p class="text-xs sm:text-sm text-slate-500 mb-5">Data <strong id="deleteTargetName" class="text-slate-800"></strong> akan dihapus dari tampilan lokal browser.</p>
+            <div class="flex gap-3 justify-center">
+                <button type="button" onclick="closeDeleteModal()" class="flex-1 px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-sm transition cursor-pointer">
+                    Batal
+                </button>
+                <button type="button" id="confirmDeleteBtn" class="flex-1 px-4 py-2.5 rounded-xl bg-rose-600 hover:bg-rose-700 text-white font-semibold text-sm transition cursor-pointer">
+                    Ya, Hapus
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="hidden fixed bottom-5 right-5 z-50 bg-slate-900 text-white px-4 py-3 rounded-xl shadow-xl border border-slate-700 text-xs sm:text-sm font-medium flex items-center gap-2.5 fade-in">
+        <i id="toast-icon" class="fa-solid fa-circle-check text-emerald-400 text-base"></i>
+        <span id="toast-msg">Pesan notifikasi</span>
+    </div>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        // =========================================================================
+        // KONFIGURASI UTAMA (Bisa diisi langsung sebelum file di-hosting)
+        // =========================================================================
+        const DEFAULT_SCRIPT_URL = ""; // Tempel URL Web App Google Apps Script (.../exec) di sini jika ingin permanen
+        const DEFAULT_ADMIN_PIN = "1234"; // Ubah PIN default admin di sini jika diinginkan
+
+        const STORAGE_DATA_KEY = 'gbi_ppl_majesty_usher_backup_v2';
+        const STORAGE_URL_KEY = 'gbi_ppl_majesty_script_url_v1';
+        const STORAGE_PIN_KEY = 'gbi_ppl_majesty_admin_pin_v1';
+
+        // State aplikasi
+        let usherData = [];
+        let deleteTargetId = null;
+        let isAdminUnlocked = false;
+
+        // Inisialisasi saat halaman dimuat
+        document.addEventListener('DOMContentLoaded', () => {
+            const activeUrl = getScriptUrl();
+            document.getElementById('scriptUrlInput').value = activeUrl;
+            updateConnectionUI();
+
+            if (activeUrl) {
+                fetchFromGoogleSheet(false);
+            } else {
+                loadLocalBackup();
+                updateBadgeCount();
+            }
+        });
+
+        // Helper mendapatkan URL Script & PIN aktif
+        function getScriptUrl() {
+            return localStorage.getItem(STORAGE_URL_KEY) || DEFAULT_SCRIPT_URL || "";
+        }
+
+        function getAdminPin() {
+            return localStorage.getItem(STORAGE_PIN_KEY) || DEFAULT_ADMIN_PIN;
+        }
+
+        // Muat cadangan data lokal (jika offline / belum ada URL Sheet)
+        function loadLocalBackup() {
+            try {
+                const raw = localStorage.getItem(STORAGE_DATA_KEY);
+                usherData = raw ? JSON.parse(raw) : [];
+            } catch (e) {
+                console.error('Gagal memuat backup lokal:', e);
+                usherData = [];
+            }
+        }
+
+        function saveLocalBackup() {
+            try {
+                localStorage.setItem(STORAGE_DATA_KEY, JSON.stringify(usherData));
+                updateBadgeCount();
+            } catch (e) {
+                console.error('Gagal menyimpan backup lokal:', e);
+            }
+        }
+
+        function updateBadgeCount() {
+            document.getElementById('badge-count').textContent = usherData.length;
+        }
+
+        function updateConnectionUI() {
+            const url = getScriptUrl();
+            const badge = document.getElementById('connection-status-badge');
+            const alertBox = document.getElementById('unconfigured-alert');
+
+            if (url) {
+                badge.className = 'px-2.5 py-0.5 rounded-md bg-emerald-100 text-emerald-800 text-xs font-semibold flex items-center gap-1.5';
+                badge.innerHTML = '<i class="fa-solid fa-circle text-[8px] text-emerald-500"></i><span>Terhubung ke Google Sheet</span>';
+                alertBox.classList.add('hidden');
+            } else {
+                badge.className = 'px-2.5 py-0.5 rounded-md bg-amber-100 text-amber-800 text-xs font-semibold flex items-center gap-1.5';
+                badge.innerHTML = '<i class="fa-solid fa-circle text-[8px] text-amber-500"></i><span>Mode Offline / Belum Terhubung Google Sheet</span>';
+                alertBox.classList.remove('hidden');
+            }
+        }
+
+        // Toggle input teks tambahan untuk "Lain-lain"
+        function toggleOtherInput(checkboxId, boxId, inputId) {
+            const checkbox = document.getElementById(checkboxId);
+            const box = document.getElementById(boxId);
+            const input = document.getElementById(inputId);
+
+            if (checkbox.checked) {
+                box.classList.remove('hidden');
+                input.focus();
+            } else {
+                box.classList.add('hidden');
+                input.value = '';
+            }
+        }
+
+        // Navigasi Tab Form vs Admin
+        function switchTab(tab) {
+            const viewForm = document.getElementById('view-form');
+            const viewAdmin = document.getElementById('view-admin');
+            const btnForm = document.getElementById('btn-tab-form');
+            const btnAdmin = document.getElementById('btn-tab-admin');
+
+            if (tab === 'form') {
+                viewForm.classList.remove('hidden');
+                viewAdmin.classList.add('hidden');
+
+                btnForm.className = 'px-3 sm:px-4 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all bg-amber-500 text-slate-950 shadow-sm flex items-center gap-1.5 cursor-pointer';
+                btnAdmin.className = 'px-3 sm:px-4 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all text-slate-300 hover:text-white flex items-center gap-1.5 cursor-pointer';
+            } else {
+                viewForm.classList.add('hidden');
+                viewAdmin.classList.remove('hidden');
+
+                btnAdmin.className = 'px-3 sm:px-4 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all bg-amber-500 text-slate-950 shadow-sm flex items-center gap-1.5 cursor-pointer';
+                btnForm.className = 'px-3 sm:px-4 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all text-slate-300 hover:text-white flex items-center gap-1.5 cursor-pointer';
+
+                if (isAdminUnlocked) {
+                    showAdminDashboard();
+                } else {
+                    document.getElementById('admin-pin-screen').classList.remove('hidden');
+                    document.getElementById('admin-dashboard-content').classList.add('hidden');
+                    document.getElementById('adminPinInput').value = '';
+                    document.getElementById('err-pin').classList.add('hidden');
+                    setTimeout(() => document.getElementById('adminPinInput').focus(), 100);
+                }
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Verifikasi & Pengelolaan PIN Admin
+        function verifyAdminPin(e) {
+            e.preventDefault();
+            const entered = document.getElementById('adminPinInput').value.trim();
+            if (entered === getAdminPin()) {
+                isAdminUnlocked = true;
+                document.getElementById('admin-lock-icon').className = 'fa-solid fa-lock-open text-emerald-400 text-xs';
+                showAdminDashboard();
+                showToast('Akses Admin dibuka.', 'success');
+            } else {
+                document.getElementById('err-pin').classList.remove('hidden');
+                document.getElementById('adminPinInput').value = '';
+                document.getElementById('adminPinInput').focus();
+            }
+        }
+
+        function lockAdminSession() {
+            isAdminUnlocked = false;
+            document.getElementById('admin-lock-icon').className = 'fa-solid fa-lock text-amber-400 text-xs';
+            document.getElementById('admin-pin-screen').classList.remove('hidden');
+            document.getElementById('admin-dashboard-content').classList.add('hidden');
+            document.getElementById('adminPinInput').value = '';
+            showToast('Halaman Admin dikunci.', 'success');
+        }
+
+        function showAdminDashboard() {
+            document.getElementById('admin-pin-screen').classList.add('hidden');
+            document.getElementById('admin-dashboard-content').classList.remove('hidden');
+            updateConnectionUI();
+            if (getScriptUrl()) {
+                fetchFromGoogleSheet(false);
+            } else {
+                renderAdminTable();
+            }
+        }
+
+        function changeAdminPin() {
+            const newPin = document.getElementById('newAdminPinInput').value.trim();
+            if (newPin.length < 4) {
+                showToast('PIN baru minimal 4 karakter/angka.', 'error');
+                return;
+            }
+            localStorage.setItem(STORAGE_PIN_KEY, newPin);
+            document.getElementById('newAdminPinInput').value = '';
+            showToast('PIN Admin berhasil diperbarui!', 'success');
+        }
+
+        // Pengaturan & Tes Koneksi Google Apps Script
+        function toggleSettingsDrawer() {
+            const drawer = document.getElementById('admin-settings-drawer');
+            drawer.classList.toggle('hidden');
+        }
+
+        async function saveAndTestScriptUrl() {
+            const inputUrl = document.getElementById('scriptUrlInput').value.trim();
+            if (!inputUrl || !inputUrl.startsWith('https://script.google.com/')) {
+                showToast('Masukkan URL Google Apps Script yang valid (https://script.google.com/.../exec).', 'error');
+                return;
+            }
+
+            const btn = document.getElementById('btn-test-url');
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i><span>Menguji Koneksi...</span>';
+
+            try {
+                const res = await fetch(inputUrl);
+                const json = await res.json();
+
+                if (json && json.status === 'success') {
+                    localStorage.setItem(STORAGE_URL_KEY, inputUrl);
+                    updateConnectionUI();
+                    usherData = normalizeSheetRecords(json.data || []);
+                    updateBadgeCount();
+                    renderAdminTable();
+                    document.getElementById('last-synced-text').textContent = `Terakhir disinkronkan: ${new Date().toLocaleTimeString('id-ID')} WIB`;
+                    showToast('Berhasil terhubung ke Google Sheet!', 'success');
+                } else {
+                    throw new Error(json.message || 'Respon tidak sesuai format.');
+                }
+            } catch (err) {
+                console.error(err);
+                showToast('Gagal terhubung. Pastikan Deploy diset "Anyone" & URL berakhiran /exec.', 'error');
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fa-solid fa-plug-circle-check"></i><span>Simpan & Tes Koneksi</span>';
+            }
+        }
+
+        function clearScriptUrl() {
+            localStorage.removeItem(STORAGE_URL_KEY);
+            document.getElementById('scriptUrlInput').value = DEFAULT_SCRIPT_URL;
+            updateConnectionUI();
+            if (!DEFAULT_SCRIPT_URL) {
+                loadLocalBackup();
+                updateBadgeCount();
+                renderAdminTable();
+            }
+            showToast('URL Google Sheet direset.', 'success');
+        }
+
+        // Mengambil data live dari Google Sheet (GET)
+        async function fetchFromGoogleSheet(showNotification = true) {
+            const url = getScriptUrl();
+            if (!url) {
+                if (showNotification) showToast('URL Google Sheet belum dikonfigurasi.', 'error');
+                renderAdminTable();
+                return;
+            }
+
+            const refreshIcon = document.getElementById('refresh-icon');
+            if (refreshIcon) refreshIcon.classList.add('fa-spin');
+
+            try {
+                const response = await fetch(url);
+                const result = await response.json();
+
+                if (result.status === 'success' && Array.isArray(result.data)) {
+                    usherData = normalizeSheetRecords(result.data);
+                    updateBadgeCount();
+                    renderAdminTable();
+                    const nowStr = new Date().toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+                    document.getElementById('last-synced-text').textContent = `Sinkronisasi Google Sheet berhasil pukul ${nowStr} WIB (${usherData.length} data)`;
+                    if (showNotification) showToast('Data terbaru berhasil dimuat dari Google Sheet!', 'success');
+                } else {
+                    throw new Error(result.message || 'Gagal membaca data sheet');
+                }
+            } catch (error) {
+                console.error('Error fetch Google Sheet:', error);
+                if (showNotification) showToast('Gagal mengambil data dari Google Sheet. Menampilkan cadangan lokal.', 'error');
+                loadLocalBackup();
+                updateBadgeCount();
+                renderAdminTable();
+            } finally {
+                if (refreshIcon) refreshIcon.classList.remove('fa-spin');
+            }
+        }
+
+        // Menyamakan format record dari Google Sheet dengan format tampilan UI
+        function normalizeSheetRecords(records) {
+            return records.map((r, idx) => {
+                const toArray = (val) => {
+                    if (Array.isArray(val)) return val;
+                    if (!val) return [];
+                    return String(val).split(',').map(s => s.trim()).filter(Boolean);
+                };
+
+                let formattedTime = r.timestamp || '-';
+                if (r.timestamp && !isNaN(Date.parse(r.timestamp))) {
+                    const d = new Date(r.timestamp);
+                    formattedTime = d.toLocaleDateString('id-ID') + ' ' + d.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
+                }
+
+                return {
+                    id: 'gs-' + idx + '-' + Date.now(),
+                    isRemote: true,
+                    timestamp: formattedTime,
+                    namaLengkap: r.namaLengkap || '-',
+                    namaPanggilan: r.namaPanggilan || '-',
+                    jenisKelamin: r.jenisKelamin || '-',
+                    ttl: r.ttl || '-',
+                    whatsapp: String(r.whatsapp || '-'),
+                    alamat: r.alamat || '-',
+                    statusPernikahan: r.status || r.statusPernikahan || '-',
+                    pekerjaan: r.pekerjaan || '-',
+                    hobi: toArray(r.hobi),
+                    jadwalIbadah: toArray(r.jadwal || r.jadwalIbadah),
+                    lamaMelayani: r.lamaMelayani || '-',
+                    pelayananLain: toArray(r.pelayananLain),
+                    pokokDoa: r.pokokDoa || ''
+                };
+            });
+        }
+
+        // Validasi & Submit Form (Mengirim POST ke Google Apps Script)
+        document.getElementById('usherForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const namaLengkap = document.getElementById('namaLengkap').value.trim();
+            const namaPanggilan = document.getElementById('namaPanggilan').value.trim();
+            const jenisKelaminEl = document.querySelector('input[name="jenisKelamin"]:checked');
+            const tempatLahir = document.getElementById('tempatLahir').value.trim();
+            const tanggalLahir = document.getElementById('tanggalLahir').value;
+            const whatsapp = document.getElementById('whatsapp').value.trim();
+            const alamat = document.getElementById('alamat').value.trim();
+            const jadwalChecked = Array.from(document.querySelectorAll('input[name="jadwalIbadah"]:checked')).map(el => el.value);
+
+            let isValid = true;
+            const toggleError = (id, show) => {
+                const el = document.getElementById(id);
+                if (show) {
+                    el.classList.remove('hidden');
+                    isValid = false;
+                } else {
+                    el.classList.add('hidden');
+                }
+            };
+
+            toggleError('err-namaLengkap', !namaLengkap);
+            toggleError('err-namaPanggilan', !namaPanggilan);
+            toggleError('err-jenisKelamin', !jenisKelaminEl);
+            toggleError('err-tempatLahir', !tempatLahir);
+            toggleError('err-tanggalLahir', !tanggalLahir);
+            toggleError('err-whatsapp', whatsapp.replace(/\D/g, '').length < 9);
+            toggleError('err-alamat', !alamat);
+            toggleError('err-jadwalIbadah', jadwalChecked.length === 0);
+
+            if (!isValid) {
+                showToast('Mohon lengkapi kolom wajib yang ditandai merah.', 'error');
+                const firstErr = document.querySelector('p[id^="err-"]:not(.hidden)');
+                if (firstErr) {
+                    firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+                return;
+            }
+
+            // Kumpulkan Hobi
+            const hobiList = Array.from(document.querySelectorAll('input[name="hobi"]:checked')).map(el => el.value);
+            if (document.getElementById('chk-hobi-lain').checked) {
+                const hobiLainText = document.getElementById('input-hobi-lain').value.trim();
+                if (hobiLainText) hobiList.push(hobiLainText);
+            }
+
+            // Kumpulkan Pelayanan Lain
+            const pelayananList = Array.from(document.querySelectorAll('input[name="pelayananLain"]:checked')).map(el => el.value);
+            if (document.getElementById('chk-pelayanan-lain').checked) {
+                const pelayananLainText = document.getElementById('input-pelayanan-lain').value.trim();
+                if (pelayananLainText) pelayananList.push(pelayananLainText);
+            }
+
+            const ttlFormatted = `${tempatLahir}, ${formatTanggalIndo(tanggalLahir)}`;
+            const statusPernikahan = document.getElementById('statusPernikahan').value;
+            const pekerjaan = document.getElementById('pekerjaan').value;
+            const lamaMelayani = document.getElementById('lamaMelayani').value;
+            const pokokDoa = document.getElementById('pokokDoa').value.trim();
+
+            // Payload sesuai kolom A-N Google Sheet
+            const sheetPayload = {
+                namaLengkap: namaLengkap,
+                namaPanggilan: namaPanggilan,
+                jenisKelamin: jenisKelaminEl.value,
+                ttl: ttlFormatted,
+                whatsapp: whatsapp,
+                alamat: alamat,
+                status: statusPernikahan,
+                pekerjaan: pekerjaan,
+                hobi: hobiList,
+                jadwal: jadwalChecked,
+                lamaMelayani: lamaMelayani,
+                pelayananLain: pelayananList,
+                pokokDoa: pokokDoa
+            };
+
+            const now = new Date();
+            const timestamp = now.toLocaleDateString('id-ID') + ' ' + now.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
+
+            const localRecord = {
+                id: 'usr-' + Date.now(),
+                isRemote: false,
+                timestamp: timestamp,
+                namaLengkap: namaLengkap,
+                namaPanggilan: namaPanggilan,
+                jenisKelamin: jenisKelaminEl.value,
+                ttl: ttlFormatted,
+                whatsapp: whatsapp,
+                alamat: alamat,
+                statusPernikahan: statusPernikahan,
+                pekerjaan: pekerjaan,
+                hobi: hobiList,
+                jadwalIbadah: jadwalChecked,
+                lamaMelayani: lamaMelayani,
+                pelayananLain: pelayananList,
+                pokokDoa: pokokDoa
+            };
+
+            // Ubah tombol ke status loading
+            const btnSubmit = document.getElementById('btnSubmitForm');
+            const submitIcon = document.getElementById('submit-icon');
+            const submitText = document.getElementById('submit-text');
+            btnSubmit.disabled = true;
+            submitIcon.className = 'fa-solid fa-spinner fa-spin';
+            submitText.textContent = 'Mengirim ke Database Gereja...';
+
+            const scriptUrl = getScriptUrl();
+
+            try {
+                if (scriptUrl) {
+                    // Menggunakan text/plain agar Google Apps Script tidak terkena preflight CORS error
+                    const response = await fetch(scriptUrl, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'text/plain;charset=utf-8'
+                        },
+                        body: JSON.stringify(sheetPayload)
+                    });
+                    const resJson = await response.json();
+                    if (resJson.status !== 'success') {
+                        throw new Error(resJson.message || 'Gagal menyimpan ke Google Sheet');
+                    }
+                    usherData.unshift(localRecord);
+                    updateBadgeCount();
+                    showToast('Data berhasil terkirim ke Google Sheet GBI PPL Majesty!', 'success');
+                } else {
+                    // Mode offline / belum terhubung URL
+                    usherData.unshift(localRecord);
+                    saveLocalBackup();
+                    showToast('Data tersimpan secara lokal (Google Sheet belum dihubungkan).', 'success');
+                }
+
+                showSuccessScreen(localRecord);
+            } catch (err) {
+                console.error('Submit error:', err);
+                // Simpan cadangan lokal agar data usher tidak hilang
+                usherData.unshift(localRecord);
+                saveLocalBackup();
+                showSuccessScreen(localRecord);
+                showToast('Tersimpan di perangkat (kendala koneksi ke Google Sheet).', 'error');
+            } finally {
+                btnSubmit.disabled = false;
+                submitIcon.className = 'fa-solid fa-paper-plane';
+                submitText.textContent = 'Kirim Data Usher';
+            }
+        });
+
+        function showSuccessScreen(data) {
+            document.getElementById('usherForm').classList.add('hidden');
+            const successScreen = document.getElementById('success-screen');
+            successScreen.classList.remove('hidden');
+
+            document.getElementById('conf-nama').textContent = data.namaPanggilan || data.namaLengkap;
+
+            const summaryGrid = document.getElementById('conf-summary-grid');
+            summaryGrid.innerHTML = `
+                <div>
+                    <span class="text-slate-400 text-xs block">Nama Lengkap</span>
+                    <span class="font-semibold text-slate-800">${escapeHTML(data.namaLengkap)}</span>
+                </div>
+                <div>
+                    <span class="text-slate-400 text-xs block">WhatsApp</span>
+                    <span class="font-semibold text-slate-800">${escapeHTML(data.whatsapp)}</span>
+                </div>
+                <div>
+                    <span class="text-slate-400 text-xs block">Tempat, Tanggal Lahir</span>
+                    <span class="font-semibold text-slate-800">${escapeHTML(data.ttl)}</span>
+                </div>
+                <div>
+                    <span class="text-slate-400 text-xs block">Jadwal Ibadah</span>
+                    <span class="font-semibold text-slate-800">${data.jadwalIbadah.join(', ')}</span>
+                </div>
+                <div class="sm:col-span-2">
+                    <span class="text-slate-400 text-xs block">Hobi & Minat</span>
+                    <span class="font-semibold text-slate-800">${data.hobi.length ? escapeHTML(data.hobi.join(', ')) : '-'}</span>
+                </div>
+                <div class="sm:col-span-2">
+                    <span class="text-slate-400 text-xs block">Minat Pelayanan Lain</span>
+                    <span class="font-semibold text-slate-800">${data.pelayananLain.length ? escapeHTML(data.pelayananLain.join(', ')) : 'Fokus Usher dulu'}</span>
+                </div>
+            `;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function resetToForm() {
+            document.getElementById('usherForm').reset();
+            document.getElementById('box-hobi-lain').classList.add('hidden');
+            document.getElementById('box-pelayanan-lain').classList.add('hidden');
+            document.getElementById('success-screen').classList.add('hidden');
+            document.getElementById('usherForm').classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Render Admin View
+        function renderAdminTable() {
+            const searchQuery = document.getElementById('searchInput').value.toLowerCase();
+            const filterJadwal = document.getElementById('filterJadwal').value;
+            const filterPelayanan = document.getElementById('filterPelayanan').value;
+
+            // Update statistik keseluruhan
+            document.getElementById('stat-total').textContent = usherData.length;
+            const laki = usherData.filter(d => d.jenisKelamin === 'Laki-laki').length;
+            const perempuan = usherData.filter(d => d.jenisKelamin === 'Perempuan').length;
+            document.getElementById('stat-gender').textContent = `${laki} L / ${perempuan} P`;
+            document.getElementById('stat-extra').textContent = usherData.filter(d => {
+                if (!d.pelayananLain || d.pelayananLain.length === 0) return false;
+                return d.pelayananLain.some(p => !p.toLowerCase().includes('fokus usher'));
+            }).length;
+            document.getElementById('stat-prayer').textContent = usherData.filter(d => d.pokokDoa && d.pokokDoa.trim() !== '').length;
+
+            // Filter data
+            const filtered = usherData.filter(item => {
+                const matchSearch = !searchQuery ||
+                    item.namaLengkap.toLowerCase().includes(searchQuery) ||
+                    item.namaPanggilan.toLowerCase().includes(searchQuery) ||
+                    item.alamat.toLowerCase().includes(searchQuery) ||
+                    item.whatsapp.includes(searchQuery) ||
+                    (item.hobi && item.hobi.join(' ').toLowerCase().includes(searchQuery)) ||
+                    (item.pelayananLain && item.pelayananLain.join(' ').toLowerCase().includes(searchQuery));
+
+                const matchJadwal = !filterJadwal || (item.jadwalIbadah && item.jadwalIbadah.some(j => j.includes(filterJadwal)));
+
+                let matchPelayanan = true;
+                if (filterPelayanan === 'HAS_PRAYER') {
+                    matchPelayanan = item.pokokDoa && item.pokokDoa.trim() !== '';
+                } else if (filterPelayanan) {
+                    matchPelayanan = item.pelayananLain && item.pelayananLain.some(p => p.toLowerCase().includes(filterPelayanan.toLowerCase()));
+                }
+
+                return matchSearch && matchJadwal && matchPelayanan;
+            });
+
+            const container = document.getElementById('admin-list-container');
+
+            if (filtered.length === 0) {
+                container.innerHTML = `
+                    <div class="bg-white rounded-2xl p-10 text-center border border-slate-200">
+                        <div class="w-12 h-12 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center mx-auto mb-3 text-xl">
+                            <i class="fa-solid fa-folder-open"></i>
+                        </div>
+                        <h3 class="font-display font-bold text-slate-800">Belum ada data usher ditampilkan</h3>
+                        <p class="text-xs text-slate-500 mt-1">Silakan isi form pendataan atau klik <strong>Refresh Data</strong> jika sudah terhubung ke Google Sheet.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = filtered.map(item => {
+                const hasPrayer = item.pokokDoa && item.pokokDoa.trim() !== '';
+                const waClean = String(item.whatsapp).replace(/\D/g, '').replace(/^0/, '62');
+
+                return `
+                <div class="bg-white rounded-2xl p-5 border border-slate-200/90 shadow-xs hover:shadow-md transition flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+                    <div class="space-y-2 flex-grow">
+                        <div class="flex flex-wrap items-center gap-2">
+                            <h3 class="font-display font-bold text-base sm:text-lg text-slate-900">
+                                ${escapeHTML(item.namaLengkap)}
+                                <span class="text-xs font-semibold text-amber-700 bg-amber-100 px-2 py-0.5 rounded-md ml-1">(${escapeHTML(item.namaPanggilan)})</span>
+                            </h3>
+                            <span class="text-[11px] font-medium px-2 py-0.5 rounded-full ${item.jenisKelamin === 'Laki-laki' ? 'bg-indigo-50 text-indigo-700' : 'bg-rose-50 text-rose-700'}">
+                                ${escapeHTML(item.jenisKelamin)}
+                            </span>
+                            <span class="text-[11px] font-medium px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">
+                                Usher: ${escapeHTML(item.lamaMelayani)}
+                            </span>
+                            ${hasPrayer ? `<span class="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-rose-100 text-rose-700 flex items-center gap-1"><i class="fa-solid fa-hands-praying"></i> Ada Pokok Doa</span>` : ''}
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 text-xs text-slate-600">
+                            <div class="flex items-center gap-1.5">
+                                <i class="fa-brands fa-whatsapp text-emerald-600 w-4"></i>
+                                <a href="https://wa.me/${waClean}" target="_blank" class="hover:underline font-medium text-slate-800">${escapeHTML(item.whatsapp)}</a>
+                            </div>
+                            <div class="flex items-center gap-1.5">
+                                <i class="fa-solid fa-cake-candles text-amber-500 w-4"></i>
+                                <span>${escapeHTML(item.ttl)}</span>
+                            </div>
+                            <div class="flex items-center gap-1.5">
+                                <i class="fa-solid fa-briefcase text-slate-400 w-4"></i>
+                                <span>${escapeHTML(item.pekerjaan)}</span>
+                            </div>
+                        </div>
+
+                        <!-- Badges Jadwal & Pelayanan -->
+                        <div class="flex flex-wrap gap-1.5 pt-1">
+                            ${(item.jadwalIbadah || []).map(j => `<span class="text-[11px] bg-emerald-50 text-emerald-700 border border-emerald-200/70 px-2 py-0.5 rounded-md font-medium">${escapeHTML(j)}</span>`).join('')}
+                            ${(item.pelayananLain || []).map(p => `<span class="text-[11px] bg-indigo-50 text-indigo-700 border border-indigo-200/70 px-2 py-0.5 rounded-md font-medium">+ ${escapeHTML(p)}</span>`).join('')}
+                        </div>
+                    </div>
+
+                    <!-- Aksi -->
+                    <div class="flex items-center gap-2 pt-3 lg:pt-0 border-t lg:border-t-0 border-slate-100 shrink-0">
+                        <a href="https://wa.me/${waClean}" target="_blank" class="px-3 py-2 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-700 text-xs font-semibold transition flex items-center gap-1" title="Chat WhatsApp">
+                            <i class="fa-brands fa-whatsapp text-sm"></i>
+                            <span class="sm:hidden">WA</span>
+                        </a>
+                        <button type="button" onclick="openDetailModal('${item.id}')" class="flex-1 lg:flex-initial px-3.5 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold transition flex items-center justify-center gap-1.5 cursor-pointer">
+                            <i class="fa-solid fa-eye"></i> Detail & Doa
+                        </button>
+                        ${!item.isRemote ? `
+                        <button type="button" onclick="openDeleteModal('${item.id}', '${escapeHTML(item.namaLengkap).replace(/'/g, "\\'")}')" class="px-3 py-2 rounded-xl bg-rose-50 hover:bg-rose-100 text-rose-600 text-xs font-semibold transition cursor-pointer" title="Hapus Data Lokal">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>` : ''}
+                    </div>
+                </div>
+                `;
+            }).join('');
+        }
+
+        // Modal Detail
+        function openDetailModal(id) {
+            const item = usherData.find(d => d.id === id);
+            if (!item) return;
+
+            document.getElementById('modalTitle').textContent = `${item.namaLengkap} (${item.namaPanggilan})`;
+            document.getElementById('modalBody').innerHTML = `
+                <div class="grid grid-cols-2 gap-3 bg-slate-50 p-4 rounded-xl border border-slate-200/80">
+                    <div>
+                        <span class="text-xs text-slate-400 block">Jenis Kelamin</span>
+                        <span class="font-semibold text-slate-800">${escapeHTML(item.jenisKelamin)}</span>
+                    </div>
+                    <div>
+                        <span class="text-xs text-slate-400 block">Status Pernikahan</span>
+                        <span class="font-semibold text-slate-800">${escapeHTML(item.statusPernikahan)}</span>
+                    </div>
+                    <div>
+                        <span class="text-xs text-slate-400 block">Tempat, Tanggal Lahir</span>
+                        <span class="font-semibold text-slate-800">${escapeHTML(item.ttl)}</span>
+                    </div>
+                    <div>
+                        <span class="text-xs text-slate-400 block">WhatsApp</span>
+                        <span class="font-semibold text-emerald-700">${escapeHTML(item.whatsapp)}</span>
+                    </div>
+                    <div class="col-span-2">
+                        <span class="text-xs text-slate-400 block">Pekerjaan / Kesibukan</span>
+                        <span class="font-semibold text-slate-800">${escapeHTML(item.pekerjaan)}</span>
+                    </div>
+                    <div class="col-span-2">
+                        <span class="text-xs text-slate-400 block">Alamat Domisili</span>
+                        <span class="font-semibold text-slate-800">${escapeHTML(item.alamat)}</span>
+                    </div>
+                </div>
+
+                <div class="space-y-2.5">
+                    <div>
+                        <span class="text-xs font-bold text-slate-500 uppercase">Hobi & Minat</span>
+                        <p class="text-slate-800 mt-0.5">${item.hobi && item.hobi.length ? escapeHTML(item.hobi.join(', ')) : '-'}</p>
+                    </div>
+                    <div>
+                        <span class="text-xs font-bold text-slate-500 uppercase">Jadwal Ibadah & Lama Melayani</span>
+                        <p class="text-slate-800 mt-0.5">${escapeHTML(item.jadwalIbadah.join(', '))} <span class="text-slate-500">(${escapeHTML(item.lamaMelayani)})</span></p>
+                    </div>
+                    <div>
+                        <span class="text-xs font-bold text-slate-500 uppercase">Minat Pelayanan Tambahan</span>
+                        <p class="text-slate-800 mt-0.5">${item.pelayananLain && item.pelayananLain.length ? escapeHTML(item.pelayananLain.join(', ')) : 'Fokus Usher dulu'}</p>
+                    </div>
+                </div>
+
+                <div class="bg-rose-50/70 border border-rose-200 rounded-xl p-4">
+                    <div class="flex items-center gap-1.5 text-rose-800 font-bold text-xs uppercase mb-1.5">
+                        <i class="fa-solid fa-hands-praying"></i> Pergumulan & Pokok Doa (Rahasia)
+                    </div>
+                    <p class="text-slate-800 italic leading-relaxed">
+                        ${item.pokokDoa && item.pokokDoa.trim() !== '' ? `"${escapeHTML(item.pokokDoa)}"` : '<span class="text-slate-400 not-italic">Tidak ada catatan pokok doa yang dituliskan.</span>'}
+                    </p>
+                </div>
+                <div class="text-[11px] text-slate-400 text-right">
+                    Waktu Input: ${escapeHTML(item.timestamp)}
+                </div>
+            `;
+
+            document.getElementById('detailModal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('detailModal').classList.add('hidden');
+        }
+
+        // Modal Panduan Setup
+        function openSetupGuideModal() {
+            document.getElementById('setupGuideModal').classList.remove('hidden');
+        }
+
+        function closeSetupGuideModal() {
+            document.getElementById('setupGuideModal').classList.add('hidden');
+        }
+
+        function copyAppsScriptCode() {
+            const codeText = document.getElementById('appsScriptCodeBlock').innerText;
+            const textarea = document.createElement('textarea');
+            textarea.value = codeText;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+            showToast('Kode Google Apps Script berhasil disalin!', 'success');
+        }
+
+        // Modal Konfirmasi Hapus Lokal
+        function openDeleteModal(id, name) {
+            deleteTargetId = id;
+            document.getElementById('deleteTargetName').textContent = name;
+            document.getElementById('deleteModal').classList.remove('hidden');
+        }
+
+        function closeDeleteModal() {
+            deleteTargetId = null;
+            document.getElementById('deleteModal').classList.add('hidden');
+        }
+
+        document.getElementById('confirmDeleteBtn').addEventListener('click', () => {
+            if (deleteTargetId) {
+                usherData = usherData.filter(d => d.id !== deleteTargetId);
+                saveLocalBackup();
+                renderAdminTable();
+                closeDeleteModal();
+                showToast('Data lokal berhasil dihapus.', 'success');
+            }
+        });
+
+        // Export ke CSV (Kompatibel dengan Microsoft Excel)
+        function exportToCSV() {
+            if (usherData.length === 0) {
+                showToast('Belum ada data untuk diekspor.', 'error');
+                return;
+            }
+
+            const headers = [
+                'Timestamp',
+                'Nama Lengkap',
+                'Nama Panggilan',
+                'Jenis Kelamin',
+                'Tempat, Tanggal Lahir',
+                'No. WhatsApp',
+                'Alamat Domisili',
+                'Status Pernikahan',
+                'Pekerjaan / Kesibukan',
+                'Minat & Hobi',
+                'Jadwal Ibadah',
+                'Lama Melayani',
+                'Minat Pelayanan Lain',
+                'Pergumulan & Pokok Doa'
+            ];
+
+            const rows = usherData.map(item => [
+                item.timestamp,
+                item.namaLengkap,
+                item.namaPanggilan,
+                item.jenisKelamin,
+                item.ttl,
+                `'${item.whatsapp}`,
+                item.alamat,
+                item.statusPernikahan,
+                item.pekerjaan,
+                (item.hobi || []).join(', '),
+                (item.jadwalIbadah || []).join(', '),
+                item.lamaMelayani,
+                (item.pelayananLain || []).join(', '),
+                item.pokokDoa || '-'
+            ]);
+
+            let csvContent = '\uFEFF';
+            csvContent += headers.map(h => `"${h}"`).join(',') + '\n';
+
+            rows.forEach(row => {
+                const escapedRow = row.map(val => {
+                    const str = String(val || '').replace(/"/g, '""').replace(/\n/g, ' ');
+                    return `"${str}"`;
+                });
+                csvContent += escapedRow.join(',') + '\n';
+            });
+
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            const today = new Date().toISOString().slice(0, 10);
+
+            link.setAttribute('href', url);
+            link.setAttribute('download', `Data_Usher_GBI_PPL_Majesty_${today}.csv`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+
+            showToast('File CSV berhasil diunduh!', 'success');
+        }
+
+        // Helper: Format Tanggal Indonesia
+        function formatTanggalIndo(dateStr) {
+            if (!dateStr) return '-';
+            const bulan = [
+                'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
+                'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
+            ];
+            const parts = dateStr.split('-');
+            if (parts.length !== 3) return dateStr;
+            const year = parts[0];
+            const month = bulan[parseInt(parts[1], 10) - 1] || parts[1];
+            const day = parseInt(parts[2], 10);
+            return `${day} ${month} ${year}`;
+        }
+
+        // Helper: Escape HTML untuk keamanan XSS
+        function escapeHTML(str) {
+            if (!str) return '';
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        }
+
+        // Helper: Toast Notification
+        let toastTimeout;
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            const icon = document.getElementById('toast-icon');
+            const msg = document.getElementById('toast-msg');
+
+            msg.textContent = message;
+            if (type === 'error') {
+                icon.className = 'fa-solid fa-circle-exclamation text-rose-400 text-base';
+            } else {
+                icon.className = 'fa-solid fa-circle-check text-emerald-400 text-base';
+            }
+
+            toast.classList.remove('hidden');
+            clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 3500);
+        }
+    </script>
+</body>
+</html>
+```
